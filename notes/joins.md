@@ -1,0 +1,1 @@
+to resume from here - https://neon.tech/postgresql/postgresql-tutorial/postgresql-joins

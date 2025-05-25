@@ -77,3 +77,23 @@ FROM
 ORDER BY
   rental_rate;
 
+select first_name || ' ' || last_name as full_name from customer 
+where full_name like '%a%';
+
+select first_name, length(first_name) name_length from customer
+where first_name like '%A%' and length(first_name) between 3 and 5
+order by name_length desc;
+
+SELECT
+  first_name,
+  last_name
+FROM
+  customer
+WHERE
+  first_name LIKE 'Bra%'
+  AND last_name <> 'Motley';
+
+select film_id, title, release_year from film order by film_id offset 4 limit 5;
+select film_id, title, rental_rate from film 
+where title like '%A%'
+order by rental_rate desc limit 10;
