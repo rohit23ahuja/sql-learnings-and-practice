@@ -97,3 +97,49 @@ select film_id, title, release_year from film order by film_id offset 4 limit 5;
 select film_id, title, rental_rate from film 
 where title like '%A%'
 order by rental_rate desc limit 10;
+
+CREATE TABLE basket_a (
+    a INT PRIMARY KEY,
+    fruit_a VARCHAR (100) NOT NULL
+);
+
+CREATE TABLE basket_b (
+    b INT PRIMARY KEY,
+    fruit_b VARCHAR (100) NOT NULL
+);
+
+INSERT INTO basket_a (a, fruit_a)
+VALUES
+    (1, 'Apple'),
+    (2, 'Orange'),
+    (3, 'Banana'),
+    (4, 'Cucumber');
+
+INSERT INTO basket_b (b, fruit_b)
+VALUES
+    (1, 'Orange'),
+    (2, 'Apple'),
+    (3, 'Watermelon'),
+    (4, 'Pear');
+
+select * from basket_a; 
+select * from basket_b;
+select a, fruit_a, b, fruit_b from basket_a
+right join basket_b on fruit_a = fruit_b 
+where a is null;
+
+select a, fruit_a, b, fruit_b from basket_a
+full outer join basket_b 
+on fruit_a=fruit_b
+where a is null or b is null;
+
+select c.customer_id, c.first_name, p.amount, 
+p.payment_date  from customer c 
+inner join payment p on p.customer_id = c.customer_id
+order by p.payment_date desc;
+
+select f1.title, f2.title, f2.length 
+from film f1 
+inner join film f2 on f1.film_id <> f2.film_id and 
+f1.length = f2.length;
+
