@@ -143,3 +143,55 @@ from film f1
 inner join film f2 on f1.film_id <> f2.film_id and 
 f1.length = f2.length;
 
+CREATE TABLE employee (
+  employee_id INT PRIMARY KEY,
+  first_name VARCHAR (255) NOT NULL,
+  last_name VARCHAR (255) NOT NULL,
+  manager_id INT,
+  FOREIGN KEY (manager_id) REFERENCES employee (employee_id) ON DELETE CASCADE
+);
+INSERT INTO employee (employee_id, first_name, last_name, manager_id)
+VALUES
+  (1, 'Windy', 'Hays', NULL),
+  (2, 'Ava', 'Christensen', 1),
+  (3, 'Hassan', 'Conner', 1),
+  (4, 'Anna', 'Reeves', 2),
+  (5, 'Sau', 'Norman', 2),
+  (6, 'Kelsie', 'Hays', 3),
+  (7, 'Tory', 'Goff', 3),
+  (8, 'Salley', 'Lester', 3);
+
+SELECT * FROM employee;
+
+
+select e1.first_name || ' ' || e1.last_name Employee,
+e2.first_name || ' ' || e2.last_name Manager from employee e1
+left join employee e2
+on e1.manager_id = e2.employee_id
+--where e1.manager_id is not null 
+order by Manager;
+
+select f1.title, f2.title, f1.length from film f1
+inner join film f2
+on f1.film_id > f2.film_id
+and f1.length = f2.length;
+
+-- cross join
+
+DROP TABLE IF EXISTS T1;
+CREATE TABLE
+  T1 (LABEL CHAR(1) PRIMARY KEY);
+DROP TABLE IF EXISTS T2;
+CREATE TABLE
+  T2 (score INT PRIMARY KEY);
+INSERT INTO
+  T1 (LABEL)
+VALUES
+  ('A'),
+  ('B');
+INSERT INTO
+  T2 (score)
+VALUES
+  (1),
+  (2),
+  (3);

@@ -1,0 +1,1 @@
+30th may to resume from - https://neon.com/postgresql/postgresql-tutorial/postgresql-group-by
